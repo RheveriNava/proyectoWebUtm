@@ -1,0 +1,140 @@
+<app-navigation></app-navigation>
+<router-outlet></router-outlet>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
+    <ul>
+        <li><a (click)="agregarArticulo()" class="btn-floating black"><i class="material-icons">book</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+<div id="agregarArticulo" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Ingresar Articulo</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Titulo del Articulo</label>
+                    <input [(ngModel)]="articulito.titulo" required type="text" placeholder="Titulo del Articulo" value="articulito.titulo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo CLR</label>
+                    <input [(ngModel)]="articulito.tipCLR" required type="text" placeholder="Tipo CLR" value="articulito.tipCLR">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre CLR</label>
+                    <input [(ngModel)]="articulito.nombreCLR" required type="text" placeholder="Nombre CLR" value="articulito.nombreCLR">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Estado</label>
+                    <input [(ngModel)]="articulito.estado" required type="text" placeholder="Estado" value="articulito.estado">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Fecha de Edicion</label>
+                    <input [(ngModel)]="articulito.fechaEdicion" required type="text" placeholder="Fecha de Edicion" value="articulito.fechaEdicion">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo NI</label>
+                    <input [(ngModel)]="articulito.tipoNI" required type="text" placeholder="Tipo NI" value="articulito.tipoNI">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>ISBN,ISSN del Articulo</label>
+                    <input [(ngModel)]="articulito.issnisbn" required type="text" placeholder="ISBN,ISSN del Articulo" value="articulito.issnisbn">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Volumen</label>
+                    <input [(ngModel)]="articulito.volumen" required type="text" placeholder="Volumen" value="articulito.volumen">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Número de Páginas</label>
+                    <input [(ngModel)]="articulito.paginas" required type="text" placeholder="Número de páginas" value="articulito.paginas">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Año de publicación</label>
+                    <input [(ngModel)]="articulito.anyo" required type="text" placeholder="Año de publicación" value="articulito.anyo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>DOI del Articulo</label>
+                    <input [(ngModel)]="articulito.doi" required type="text" placeholder="DOI del Articulo" value="articulito.doi">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Comprobante del Articulo</label>
+                    <input [(ngModel)]="articulito.comprobante" required type="text" placeholder="Comprobante del Articulo" value="articulito.comprobante">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Indexa del Articulo</label>
+                    <input [(ngModel)]="articulito.indexa" required type="text" placeholder="Indexa del Articulo" value="articulito.indexa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Issue del Articulo</label>
+                    <input [(ngModel)]="articulito.issue" required type="text" placeholder="Issue del Articulo" value="articulito.issue">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Editores del Articulo</label>
+                    <input [(ngModel)]="articulito.editores" required type="text" placeholder="Editores del Articulo" value="articulito.editores">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Cuidad Donde se Publicó</label>
+                    <input [(ngModel)]="articulito.cuidad" required type="text" placeholder="Ciudad Donde se Publicó" value="articulito.ciudad">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>País Donde se Publicó</label>
+                    <input [(ngModel)]="articulito.pais" required type="text" placeholder="País Donde se Publicó" value="articulito.pais">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Editorial</label>
+                    <input [(ngModel)]="articulito.editorial" required type="text" placeholder="Editorial" value="articulito.editorial">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="darAltaArticulo()" class=" modal-action waves-effect modal-close waves-green btn-flat" http-equiv="refresh">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

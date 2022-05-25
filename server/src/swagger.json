@@ -1,0 +1,1942 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API proyectoUTM",
+        "description": "<html><body>Esta es la documentación de la API para el sistema de Investigación Docencia.<p>Para poder usar esta API es necesario solicitar el token y con esto poder utilizar los servicios proporcionados.</p><br><p><b>Autenticación y token de API</b></p><p>La Universidad Tecnológica de la Mixteca (UTM) proporciona el api-token. Una vez que haya creado y confirmado su cuenta.</p></body></html>",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [{
+            "name": "Institutos",
+            "description": "API para obtener información de los institutos de la UTM"
+        },
+        {
+            "name": "Carreras",
+            "description": "API para obtener información de las carreras de la UTM"
+        },
+        {
+            "name": "Profesores",
+            "description": "API para obtener información de los profesores de la UTM"
+        },
+        {
+            "name": "Articulos",
+            "description": "API para obtener información de los Articulos de la UTM"
+        },
+        {
+            "name": "TipoProfesores",
+            "description": "API para obtener información de los Tipos de Profesores de la UTM"
+        },
+        {
+            "name": "ArticuloyProfesor",
+            "description": "API para obtener información de los Profesores de un Articulo de la UTM"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/institutos/all": {
+            "get": {
+                "tags": [
+                    "Institutos"
+                ],
+                "summary": "Listado de todos los institutos que existen en la UTM.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los institutos que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los institutos existentes en la UTM?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                    "idInstituto": 1,
+                                    "nombreInstituto": "Instituto de electrónica y mecatrónica",
+                                    "codigoInstituto": "001"
+                                },
+                                {
+                                    "idInstituto": 2,
+                                    "nombreInstituto": "Instituto de computación",
+                                    "codigoInstituto": "002"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Institutos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }]
+            }
+        },
+        "/api/institutos/{idInstituto}": {
+            "get": {
+                "tags": [
+                    "Institutos"
+                ],
+                "summary": "Listado de un instituto en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idInstituto": 2,
+                                "nombreInstituto": "Instituto de computación",
+                                "codigoInstituto": "002"
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Instituto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idInstituto",
+                    "in": "path",
+                    "required": true,
+                    "description": "idInstituto del instituto del cuál se requiere la información",
+                    "type": "number",
+                    "default": "8"
+                }]
+            }
+        },
+        "/api/institutos/eliminar/{idInstituto}": {
+            "delete": {
+                "summary": "Eliminar un instituto",
+                "operationId": "eliminar",
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                    },
+                    {
+                        "name": "idInstituto",
+                        "in": "path",
+                        "description": "id del Instituto a eliminar",
+                        "required": true,
+                        "default": 14
+                    }
+                ],
+                "tags": [
+                    "Institutos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/institutos/create": {
+            "post": {
+                "summary": "Creando un instituto",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "instituto",
+                    "in": "body",
+                    "description": "Instituto agregado",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/NuevoInstituto"
+                    }
+                }],
+                "tags": [
+                    "Institutos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/institutos/actualizar/{idInstituto}": {
+            "put": {
+                "summary": "Modificando un instituto",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                    }, {
+                        "name": "idInstituto",
+                        "in": "path",
+                        "description": "id del Instituto a eliminar",
+                        "required": true,
+                        "default": 18
+                    },
+                    {
+                        "name": "Instituto",
+                        "in": "body",
+                        "description": "Instituto a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ViejoInstituto"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Institutos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras": {
+            "get": {
+                "tags": [
+                    "Carreras"
+                ],
+                "summary": "Listado de todos las carreras que existen en la UTM.",
+                "description": "<p>Servicio que devuelve la información detallada de todos las carreras que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las carreras existentes en la UTM?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                    "idCarrera": 2,
+                                    "nombreCarrera": "Ingeniería en Computación",
+                                    "codigoCarrera": "002",
+                                    "idInstituto": 2,
+                                    "siglas": "IC"
+                                },
+                                {
+                                    "idCarrera": 3,
+                                    "nombreCarrera": "Ingeniería en Diseño",
+                                    "codigoCarrera": "003",
+                                    "idInstituto": 3,
+                                    "siglas": "ID"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Carreras"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }]
+            }
+        },
+        "/api/carreras/{idCarrera}": {
+            "get": {
+                "tags": [
+                    "Carreras"
+                ],
+                "summary": "Listado de una carrera en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idCarrera": 1,
+                                "codigoCarrera": "002",
+                                "nombreCarrera": "Ing. en Computación",
+                                "idInstituto": 1
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Carrera"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "name": "idCarrera",
+                    "in": "path",
+                    "required": true,
+                    "description": "idCarrera de la carrera de la cuál se requiere la información",
+                    "type": "number",
+                    "default": "8"
+                }]
+            }
+        },
+        "/api/carrerass/eliminar/{idCarrera}": {
+            "delete": {
+                "summary": "Eliminar una carrera",
+                "operationId": "eliminar",
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idCarrera",
+                    "in": "path",
+                    "description": "id de la Carrera a eliminar",
+                    "required": true,
+                    "default": 14
+                }],
+                "tags": [
+                    "Carreras"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras/create": {
+            "post": {
+                "summary": "Creando una carrera",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "carrera",
+                    "in": "body",
+                    "description": "Carrera agregada",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/NuevaCarrera"
+                    }
+                }],
+                "tags": [
+                    "Carreras"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras/actualizar/{idCarrera}": {
+            "put": {
+                "summary": "Modificando una carrera",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                    }, {
+                        "name": "idCarrera",
+                        "in": "path",
+                        "description": "id de la Carrera a eliminar",
+                        "required": true,
+                        "default": 18
+                    },
+                    {
+                        "name": "Carrera",
+                        "in": "body",
+                        "description": "Carrera a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ViejaCarrera"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Carreras"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carreras/getCarrerasByInstituto/{idInstituto}": {
+            "get": {
+                "tags": [
+                    "Carreras"
+                ],
+                "summary": "Listado de carreras de un instituto en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idCarrera": 3,
+                                "nombreCarrera": "Ingeniería en Diseño",
+                                "codigoCarrera": "003",
+                                "idInstituto": 3,
+                                "siglas": "ID"
+                            }, {
+                                "idCarrera": 32,
+                                "nombreCarrera": "Ingenieri­a Civil",
+                                "codigoCarrera": "003",
+                                "idInstituto": 3,
+                                "siglas": "ICV"
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Carrera"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idInstituto",
+                    "in": "path",
+                    "required": true,
+                    "description": "idInstituto del Instituto del cuál se requiere la información de las carreras relacionadas el instituto",
+                    "type": "number",
+                    "default": "3"
+                }]
+            }
+        },
+        "/api/profesores": {
+            "get": {
+                "tags": [
+                    "Profesores"
+                ],
+                "summary": "Listado de todos los profesores que existen en la UTM.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los profesores que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los profesores existentes en la UTM?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idProfesor": 2,
+                                "nombresP": "Carlos",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba0@gmail.com",
+                                "password": "$2a$10$I9b3gs6//2p15e5NkI3bKeq8OgMny5ZbgzuVmw0qrbK.Abrxb5FBy",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }, {
+                                "idProfesor": 3,
+                                "nombresP": "David",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba1@gmail.com",
+                                "password": "$2a$10$ZvAhNicBT8OAUPFVFK.AD.1iQKKkk3XBypl9yoogvuIsenefO3m5C",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Profesores"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }]
+            }
+        },
+        "/api/profesores/{idProfesor}": {
+            "get": {
+                "tags": [
+                    "Profesores"
+                ],
+                "summary": "Listado de un profesor en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idProfesor": 3,
+                                "nombresP": "David",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba1@gmail.com",
+                                "password": "$2a$10$ZvAhNicBT8OAUPFVFK.AD.1iQKKkk3XBypl9yoogvuIsenefO3m5C",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Profesores"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idProfesor",
+                    "in": "path",
+                    "required": true,
+                    "description": "idProfesor del profesor del cuál se requiere la información",
+                    "type": "number",
+                    "default": "8"
+                }]
+            }
+        },
+        "/api/profesores/eliminar/{idProfesor}": {
+            "delete": {
+                "summary": "Eliminar un profesor",
+                "operationId": "eliminar",
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idProfesor",
+                    "in": "path",
+                    "description": "id del profesor a eliminar",
+                    "required": true,
+                    "default": 14
+                }],
+                "tags": [
+                    "Profesores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/profesores/create": {
+            "post": {
+                "summary": "Creando un profesor",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "profesor",
+                    "in": "body",
+                    "description": "profesor agregada",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/NuevoProfesor"
+                    }
+                }],
+                "tags": [
+                    "Profesores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/profesores/actualizar/{idProfesor}": {
+            "put": {
+                "summary": "Modificando una Profesor",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                    }, {
+                        "name": "idProfesor",
+                        "in": "path",
+                        "description": "id de la Profesor a eliminar",
+                        "required": true,
+                        "default": 18
+                    },
+                    {
+                        "name": "Profesor",
+                        "in": "body",
+                        "description": "Profesor a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ViejoProfesor"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Profesores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/profesores/listAutorByArticulo/{idArticulo}": {
+            "get": {
+                "tags": [
+                    "Profesores"
+                ],
+                "summary": "Listado de los profesores de un articulo en particular.",
+                "description": "<p>Listado de los profesores de un articulo en particular.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idProfesor": 3,
+                                "nombresP": "David",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba1@gmail.com",
+                                "password": "$2a$10$ZvAhNicBT8OAUPFVFK.AD.1iQKKkk3XBypl9yoogvuIsenefO3m5C",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Profesores"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idArticulo",
+                    "in": "path",
+                    "required": true,
+                    "description": "Identificador del Articulo del cuál se requiere la información de los profesores asociados a el.",
+                    "type": "number",
+                    "default": "8"
+                }]
+            }
+        },
+        "/api/profesores/existe": {
+            "post": {
+                "summary": "Verifica si existe un profesor con su correo y contraseña.",
+                "description": "<p>Verifica si existe un profesor con su correo y contraseña.</p>",
+                "operationId": "select",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "profesor",
+                    "in": "body",
+                    "description": "profesor existente",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/usuario"
+                    }
+                }],
+                "tags": [
+                    "Profesores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/profesores/cambiarContrasenya": {
+            "post": {
+                "summary": "Actualiza una contraseña a través del correo.",
+                "description": "<p>Actualiza una contraseña a través del correo.</p>",
+                "operationId": "update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "profesor",
+                    "in": "body",
+                    "description": "profesor existente",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/usuario"
+                    }
+                }],
+                "tags": [
+                    "Profesores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/profesores/listProfesorByInstituto/{idInstituto}": {
+            "get": {
+                "tags": [
+                    "Profesores"
+                ],
+                "summary": "Listado de todos los profesores de un determinado instituto.",
+                "description": "<p>Listado de todos los profesores de un determinado instituto.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idProfesor": 2,
+                                "nombresP": "Carlos",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba0@gmail.com",
+                                "password": "$2a$10$I9b3gs6//2p15e5NkI3bKeq8OgMny5ZbgzuVmw0qrbK.Abrxb5FBy",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }, {
+                                "idProfesor": 3,
+                                "nombresP": "David",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba1@gmail.com",
+                                "password": "$2a$10$ZvAhNicBT8OAUPFVFK.AD.1iQKKkk3XBypl9yoogvuIsenefO3m5C",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Profesores"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idInstituto",
+                    "in": "path",
+                    "required": true,
+                    "description": "Identificador del Instituto del cuál se requiere la lista de sus profesores.",
+                    "type": "number",
+                    "default": "2"
+                }]
+            }
+        },
+        "/api/profesores/listProfesorByCarrera/{idCarrera}": {
+            "get": {
+                "tags": [
+                    "Profesores"
+                ],
+                "summary": "Listado de todos los profesores de una determinado Carrera.",
+                "description": "<p>Listado de todos los profesores de un determinado Carrera.</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                "idProfesor": 2,
+                                "nombresP": "Carlos",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba0@gmail.com",
+                                "password": "$2a$10$I9b3gs6//2p15e5NkI3bKeq8OgMny5ZbgzuVmw0qrbK.Abrxb5FBy",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }, {
+                                "idProfesor": 3,
+                                "nombresP": "David",
+                                "apellidoP": "Cruz",
+                                "apellidoM": "Lopez",
+                                "correoProfesor": "prueba1@gmail.com",
+                                "password": "$2a$10$ZvAhNicBT8OAUPFVFK.AD.1iQKKkk3XBypl9yoogvuIsenefO3m5C",
+                                "nivel": 1,
+                                "idCarrera": 3,
+                                "grado": "Licenciatura",
+                                "idTipoProfesor": 3,
+                                "nombreApa": "",
+                                "idInstituto": 0
+                            }]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Profesores"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idCarrera",
+                    "in": "path",
+                    "required": true,
+                    "description": "Identificador de la Carrera del cuál se requiere la lista de sus profesores.",
+                    "type": "number",
+                    "default": "2"
+                }]
+            }
+        },
+        "/api/articulo": {
+            "get": {
+                "tags": [
+                    "Articulos"
+                ],
+                "summary": "Listado de todos los Articulos que existen en la UTM.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los Articulos que existen en la UTM.</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los Articulos existentes en la UTM?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [{
+                                    "idArticulo": 39,
+                                    "tipCLR": "Libro",
+                                    "titulo": "Programación cuantica",
+                                    "nombreCLR": "La programación cuantica",
+                                    "estado": "Publicado",
+                                    "fechaEdicion": "2020-06-10",
+                                    "tipoNI": "sadfkjlkj234",
+                                    "issnisbn": "sdfge345df",
+                                    "volumen": "2",
+                                    "paginas": "1231",
+                                    "anyo": "2020",
+                                    "doi": "kfkvmnid478",
+                                    "comprobante": "fiscal",
+                                    "indexa": "sdlkfj029834",
+                                    "issue": "dfgh3456",
+                                    "editores": "Ryzen",
+                                    "cuidad": "Sonora",
+                                    "pais": "México",
+                                    "editorial": "Glorious"
+                                },
+                                {
+                                    "idArticulo": 40,
+                                    "tipCLR": "Articulo",
+                                    "titulo": "Algoritmos de ordenamiento",
+                                    "nombreCLR": "Los algoritmos de ordenamiento más poderosos",
+                                    "estado": "publicado",
+                                    "fechaEdicion": "2019-10-10",
+                                    "tipoNI": "sdfsdf345fgh",
+                                    "issnisbn": "fgh456df",
+                                    "volumen": "erfg356t3rg",
+                                    "paginas": "300",
+                                    "anyo": "2019",
+                                    "doi": "dfg345",
+                                    "comprobante": "bueno",
+                                    "indexa": "sdf098sdfgs",
+                                    "issue": "kjdfslñkdfsier09834",
+                                    "editores": "intel",
+                                    "cuidad": "Oaxaca",
+                                    "pais": "México",
+                                    "editorial": "Glorious"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Articulos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }]
+            }
+        },
+        "/api/articulo/{idArticulos}": {
+            "get": {
+                "tags": [
+                    "Articulos"
+                ],
+                "summary": "Listado de un articulo en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": {
+                                "idArticulo": 39,
+                                "tipCLR": "Libro",
+                                "titulo": "Programación cuantica",
+                                "nombreCLR": "La programación cuantica",
+                                "estado": "Publicado",
+                                "fechaEdicion": "2020-06-10",
+                                "tipoNI": "sadfkjlkj234",
+                                "issnisbn": "sdfge345df",
+                                "volumen": "2",
+                                "paginas": "1231",
+                                "anyo": "2020",
+                                "doi": "kfkvmnid478",
+                                "comprobante": "fiscal",
+                                "indexa": "sdlkfj029834",
+                                "issue": "dfgh3456",
+                                "editores": "Ryzen",
+                                "cuidad": "Sonora",
+                                "pais": "México",
+                                "editorial": "Glorious"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Articulos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idArticulos",
+                    "in": "path",
+                    "required": true,
+                    "description": "Identificador del Articulo del cuál se requiere la información",
+                    "type": "number",
+                    "default": "8"
+                }]
+            }
+        },
+        "/api/articulo/eliminar/{idArticulos}": {
+            "delete": {
+                "summary": "Eliminar un Articulos",
+                "operationId": "eliminar",
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idArticulos",
+                    "in": "path",
+                    "description": "Identificador del Articulos a eliminar",
+                    "required": true,
+                    "default": 14
+                }],
+                "tags": [
+                    "Articulos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/articulo/create/{idProfesor}": {
+            "post": {
+                "summary": "Creando un Articulos",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idProfesor",
+                    "in": "path",
+                    "description": "Identificador del Profesor a relacionar con el articulo",
+                    "required": true,
+                    "default": 41
+                }, {
+                    "name": "Articulos",
+                    "in": "body",
+                    "description": "Articulos agregada",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/NuevoArticulo"
+                    }
+                }],
+                "tags": [
+                    "Articulos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/articulo/actualizar/{idArticulos}": {
+            "put": {
+                "summary": "Modificando una Articulos",
+                "operationId": "actualizar",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                    }, {
+                        "name": "idArticulos",
+                        "in": "path",
+                        "description": "id de la Articulos a actualizar",
+                        "required": true,
+                        "default": 18
+                    },
+                    {
+                        "name": "Articulos",
+                        "in": "body",
+                        "description": "Articulos a modificar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ViejoArticulo"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Articulos"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "respuesta vacía"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/articulo/listByPeriodo/{ini}/{fin}": {
+            "get": {
+                "tags": [
+                    "Articulos"
+                ],
+                "summary": "Listado de un articulo en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": {
+                                "idArticulo": 39,
+                                "tipCLR": "Libro",
+                                "titulo": "Programación cuantica",
+                                "nombreCLR": "La programación cuantica",
+                                "estado": "Publicado",
+                                "fechaEdicion": "2020-06-10",
+                                "tipoNI": "sadfkjlkj234",
+                                "issnisbn": "sdfge345df",
+                                "volumen": "2",
+                                "paginas": "1231",
+                                "anyo": "2020",
+                                "doi": "kfkvmnid478",
+                                "comprobante": "fiscal",
+                                "indexa": "sdlkfj029834",
+                                "issue": "dfgh3456",
+                                "editores": "Ryzen",
+                                "cuidad": "Sonora",
+                                "pais": "México",
+                                "editorial": "Glorious"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Articulos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "ini",
+                    "in": "path",
+                    "required": true,
+                    "description": "Fecha inicial del parametro del periodo para buscar los articulos.",
+                    "type": "string",
+                    "default": "2019-01-01"
+                }, {
+                    "name": "fin",
+                    "in": "path",
+                    "required": true,
+                    "description": "Fecha final del parametro del periodo para buscar los articulos.",
+                    "type": "string",
+                    "default": "2022-04-02"
+                }]
+            }
+        },
+        "/api/articulo/listArticulosByProfesorByPeriodo/{idProfesor}/{ini}/{fin}": {
+            "get": {
+                "tags": [
+                    "Articulos"
+                ],
+                "summary": "Listado de un articulo en particular.",
+                "description": "<p>Servicio ...</p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": {
+                                "idArticulo": 39,
+                                "tipCLR": "Libro",
+                                "titulo": "Programación cuantica",
+                                "nombreCLR": "La programación cuantica",
+                                "estado": "Publicado",
+                                "fechaEdicion": "2020-06-10",
+                                "tipoNI": "sadfkjlkj234",
+                                "issnisbn": "sdfge345df",
+                                "volumen": "2",
+                                "paginas": "1231",
+                                "anyo": "2020",
+                                "doi": "kfkvmnid478",
+                                "comprobante": "fiscal",
+                                "indexa": "sdlkfj029834",
+                                "issue": "dfgh3456",
+                                "editores": "Ryzen",
+                                "cuidad": "Sonora",
+                                "pais": "México",
+                                "editorial": "Glorious"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Articulos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [{
+                    "description": "apiKey",
+                    "type": "string",
+                    "in": "header",
+                    "name": "Authorization",
+                    "default": "Bearer eyJhbGciOiJIUzI1NiJ9.cmhldmU4NTVAZ21haWwuY29t.k1Elo10OhVf_UJKHERDIZSdlPUQZ1RHDjbp_bIqOgiA"
+                }, {
+                    "name": "idProfesor",
+                    "in": "path",
+                    "required": true,
+                    "description": "Identificador del Profesor del cuál se requiere la buscar articulos",
+                    "type": "number",
+                    "default": "41"
+                }, {
+                    "name": "ini",
+                    "in": "path",
+                    "required": true,
+                    "description": "Fecha inicial del parametro del periodo para buscar los articulos.",
+                    "type": "string",
+                    "default": "2019-01-01"
+                }, {
+                    "name": "fin",
+                    "in": "path",
+                    "required": true,
+                    "description": "Fecha final del parametro del periodo para buscar los articulos.",
+                    "type": "string",
+                    "default": "2022-04-02"
+                }]
+            }
+        }
+    },
+    "definitions": {
+        "Instituto": {
+            "type": "object",
+            "properties": {
+                "idInstituto": {
+                    "type": "number",
+                    "description": "Identificador del instituto"
+                },
+                "codigo": {
+                    "type": "string",
+                    "description": "Código del instituto"
+                },
+                "nombreInstituto": {
+                    "type": "string",
+                    "description": "Nombre del instituto"
+                }
+            }
+        },
+        "ViejoInstituto": {
+            "type": "object",
+            "required": [
+                "codigo",
+                "nombre"
+            ],
+            "properties": {
+                "codigo": {
+                    "type": "string",
+                    "default": "111"
+                },
+                "nombre": {
+                    "type": "string",
+                    "default": "Instituto patito"
+                }
+            }
+        },
+        "Institutos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Instituto"
+            }
+        },
+        "NuevoInstituto": {
+            "type": "object",
+            "required": [
+                "codigo",
+                "nombre"
+            ],
+            "properties": {
+                "codigo": {
+                    "type": "string",
+                    "default": "111"
+                },
+                "nombre": {
+                    "type": "string",
+                    "default": "Instituto patito"
+                }
+            }
+        },
+        "Carrera": {
+            "type": "object",
+            "properties": {
+                "idCarrera": {
+                    "type": "number",
+                    "description": "Identificador de la carrera"
+                },
+                "codigoCarrera": {
+                    "type": "string",
+                    "description": "Código de la carrera"
+                },
+                "nombreCarrera": {
+                    "type": "string",
+                    "description": "Nombre de la carrera"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "description": "Identificador del instituto"
+                }
+            }
+        },
+        "Carreras": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Carrera"
+            }
+        },
+        "NuevaCarrera": {
+            "type": "object",
+            "required": [
+                "codigo",
+                "nombre",
+                "idInstituto"
+            ],
+            "properties": {
+                "codigoCarrera": {
+                    "type": "string",
+                    "default": "011"
+                },
+                "nombreCarrera": {
+                    "type": "string",
+                    "default": "Carrera patito"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "default": "2"
+                }
+            }
+        },
+        "ViejaCarrera": {
+            "type": "object",
+            "required": [
+                "codigo",
+                "nombre",
+                "idInstituto"
+            ],
+            "properties": {
+                "codigoCarrera": {
+                    "type": "string",
+                    "default": "011"
+                },
+                "nombreCarrera": {
+                    "type": "string",
+                    "default": "Carrera patito"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "default": "2"
+                }
+            }
+        },
+        "Profesor": {
+            "type": "object",
+            "properties": {
+                "idProfesor": {
+                    "type": "number",
+                    "description": "Identificador del profesor"
+                },
+                "nombresP": {
+                    "type": "string",
+                    "description": "Nombre o nombres del profesor"
+                },
+                "apellidoP": {
+                    "type": "string",
+                    "description": "Apellido paterno del profesor"
+                },
+                "apellidoM": {
+                    "type": "string",
+                    "description": "Apellido materno del profesor"
+                },
+                "correoProfesor": {
+                    "type": "string",
+                    "description": "Correo personal del profesor"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña personal del profesor"
+                },
+                "nivel": {
+                    "type": "number",
+                    "description": "Nivel del profesor"
+                },
+                "idCarrera": {
+                    "type": "number",
+                    "description": "Id de la Carrera asociada al profesor"
+                },
+                "grado": {
+                    "type": "string",
+                    "description": "Grado del profesor"
+                },
+                "idTipoProfesor": {
+                    "type": "number",
+                    "description": "Tipo de profesor"
+                },
+                "nombreApa": {
+                    "type": "string",
+                    "description": "Nombre Apa del profesor"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "description": "Id de la Instituto asociada al profesor"
+                }
+            }
+        },
+        "usuario": {
+            "type": "object",
+            "required": [
+                "correo",
+                "password"
+            ],
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "default": "patito@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "default": "patito"
+                }
+            }
+        },
+        "Profesores": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Profesor"
+            }
+        },
+        "NuevoProfesor": {
+            "type": "object",
+            "required": [
+                "nombresP",
+                "apellidoP",
+                "apellidoM",
+                "correoProfesor",
+                "password",
+                "nivel",
+                "idCarrera",
+                "grado",
+                "idTipoProfesor",
+                "nombreApa",
+                "idInstituto"
+            ],
+            "properties": {
+                "nombresP": {
+                    "type": "string",
+                    "default": "Nombre Patito"
+                },
+                "apellidoP": {
+                    "type": "string",
+                    "default": "Apellido Paterno Patito"
+                },
+                "apellidoM": {
+                    "type": "string",
+                    "default": "Apellido Materno Patito"
+                },
+                "correoProfesor": {
+                    "type": "string",
+                    "default": "Correo Patito"
+                },
+                "password": {
+                    "type": "string",
+                    "default": "Contraseña Patito"
+                },
+                "nivel": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "idCarrera": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "grado": {
+                    "type": "string",
+                    "default": "Grado Patito"
+                },
+                "idTipoProfesor": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "nombreApa": {
+                    "type": "string",
+                    "default": "Nombre Apa Patito"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "default": "2"
+                }
+            }
+        },
+        "ViejoProfesor": {
+            "type": "object",
+            "required": [
+                "nombresP",
+                "apellidoP",
+                "apellidoM",
+                "correoProfesor",
+                "password",
+                "nivel",
+                "idCarrera",
+                "grado",
+                "idTipoProfesor",
+                "nombreApa",
+                "idInstituto"
+            ],
+            "properties": {
+                "nombresP": {
+                    "type": "string",
+                    "default": "Nombre Patito"
+                },
+                "apellidoP": {
+                    "type": "string",
+                    "default": "Apellido Paterno Patito"
+                },
+                "apellidoM": {
+                    "type": "string",
+                    "default": "Apellido Materno Patito"
+                },
+                "correoProfesor": {
+                    "type": "string",
+                    "default": "Correo Patito"
+                },
+                "password": {
+                    "type": "string",
+                    "default": "Contraseña Patito"
+                },
+                "nivel": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "idCarrera": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "grado": {
+                    "type": "string",
+                    "default": "Grado Patito"
+                },
+                "idTipoProfesor": {
+                    "type": "number",
+                    "default": "2"
+                },
+                "nombreApa": {
+                    "type": "string",
+                    "default": "Nombre Apa Patito"
+                },
+                "idInstituto": {
+                    "type": "number",
+                    "default": "2"
+                }
+            }
+        },
+        "Articulo": {
+            "type": "object",
+            "properties": {
+                "idArticulo ": {
+                    "type": "number",
+                    "description": "Identificador del articulo"
+                },
+                "tipCLR": {
+                    "type": "string",
+                    "description": "Tip CLR del articulo"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del articulo"
+                },
+                "nombreCLR": {
+                    "type": "string",
+                    "description": "Nombre CLR del articulo"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del articulo"
+                },
+                "fechaEdicion": {
+                    "type": "string",
+                    "description": "Fecha Edicion del articulo"
+                },
+                "tipoNI": {
+                    "type": "string",
+                    "description": "Tipo NI del articulo"
+                },
+                "issnisbn": {
+                    "type": "string",
+                    "description": "Issnisbn del articulo"
+                },
+                "volumen": {
+                    "type": "string",
+                    "description": "Volumen del articulo"
+                },
+                "paginas": {
+                    "type": "string",
+                    "description": "Paginas del articulo"
+                },
+                "anyo": {
+                    "type": "string",
+                    "description": "Año del articulo"
+                },
+                "doi": {
+                    "type": "string",
+                    "description": "Doi del articulo"
+                },
+                "comprobante": {
+                    "type": "string",
+                    "description": "Comprobante del articulo"
+                },
+                "indexa": {
+                    "type": "string",
+                    "description": "Indexa del articulo"
+                },
+                "issue": {
+                    "type": "string",
+                    "description": "Issue del articulo"
+                },
+                "editores": {
+                    "type": "string",
+                    "description": "Editores del articulo"
+                },
+                "cuidad": {
+                    "type": "string",
+                    "description": "Cuidad donde se publico el articulo"
+                },
+                "pais": {
+                    "type": "string",
+                    "description": "Pais donde se publico el articulo"
+                },
+                "editorial": {
+                    "type": "string",
+                    "description": "Editorial del articulo"
+                }
+            }
+        },
+        "Articulos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Articulo"
+            }
+        },
+        "NuevoArticulo": {
+            "type": "object",
+            "required": [
+                "tipCLR",
+                "titulo",
+                "nombreCLR",
+                "estado",
+                "fechaEdicion",
+                "tipoNI",
+                "issnisbn",
+                "volumen",
+                "paginas",
+                "anyo",
+                "doi",
+                "comprobante",
+                "indexa",
+                "issue",
+                "editores",
+                "cuidad",
+                "pais",
+                "editorial"
+            ],
+            "properties": {
+                "tipCLR": {
+                    "type": "string",
+                    "default": "Revista"
+                },
+                "titulo": {
+                    "type": "string",
+                    "default": "Patito"
+                },
+                "nombreCLR": {
+                    "type": "string",
+                    "default": "Revista Patito"
+                },
+                "estado": {
+                    "type": "string",
+                    "default": "Publicado"
+                },
+                "fechaEdicion": {
+                    "type": "string",
+                    "default": "2022-01-25"
+                },
+                "tipoNI": {
+                    "type": "string",
+                    "default": "Nacional"
+                },
+                "issnisbn": {
+                    "type": "string",
+                    "default": "Patito123"
+                },
+                "volumen": {
+                    "type": "string",
+                    "default": "1"
+                },
+                "paginas": {
+                    "type": "string",
+                    "default": "15-20"
+                },
+                "anyo": {
+                    "type": "string",
+                    "default": "2022"
+                },
+                "doi": {
+                    "type": "string",
+                    "default": "http://programacion.com"
+                },
+                "comprobante": {
+                    "type": "string",
+                    "default": ""
+                },
+                "indexa": {
+                    "type": "string",
+                    "default": "1"
+                },
+                "issue": {
+                    "type": "string",
+                    "default": ""
+                },
+                "editores": {
+                    "type": "string",
+                    "default": "Tres Patitos"
+                },
+                "cuidad": {
+                    "type": "string",
+                    "default": "Huajuapan"
+                },
+                "pais": {
+                    "type": "string",
+                    "default": "Mexico"
+                },
+                "editorial": {
+                    "type": "string",
+                    "default": "Patito"
+                }
+            }
+        },
+        "ViejoArticulo": {
+            "type": "object",
+            "required": [
+                "tipCLR",
+                "titulo",
+                "nombreCLR",
+                "estado",
+                "fechaEdicion",
+                "tipoNI",
+                "issnisbn",
+                "volumen",
+                "paginas",
+                "anyo",
+                "doi",
+                "comprobante",
+                "indexa",
+                "issue",
+                "editores",
+                "cuidad",
+                "pais",
+                "editorial"
+            ],
+            "properties": {
+                "tipCLR": {
+                    "type": "string",
+                    "default": "Revista"
+                },
+                "titulo": {
+                    "type": "string",
+                    "default": "Patito"
+                },
+                "nombreCLR": {
+                    "type": "string",
+                    "default": "Revista Patito"
+                },
+                "estado": {
+                    "type": "string",
+                    "default": "Publicado"
+                },
+                "fechaEdicion": {
+                    "type": "string",
+                    "default": "2022-01-25"
+                },
+                "tipoNI": {
+                    "type": "string",
+                    "default": "Nacional"
+                },
+                "issnisbn": {
+                    "type": "string",
+                    "default": "Patito123"
+                },
+                "volumen": {
+                    "type": "string",
+                    "default": "1"
+                },
+                "paginas": {
+                    "type": "string",
+                    "default": "15-20"
+                },
+                "anyo": {
+                    "type": "string",
+                    "default": "2022"
+                },
+                "doi": {
+                    "type": "string",
+                    "default": "http://programacion.com"
+                },
+                "comprobante": {
+                    "type": "string",
+                    "default": ""
+                },
+                "indexa": {
+                    "type": "string",
+                    "default": "1"
+                },
+                "issue": {
+                    "type": "string",
+                    "default": ""
+                },
+                "editores": {
+                    "type": "string",
+                    "default": "Tres Patitos"
+                },
+                "cuidad": {
+                    "type": "string",
+                    "default": "Huajuapan"
+                },
+                "pais": {
+                    "type": "string",
+                    "default": "Mexico"
+                },
+                "editorial": {
+                    "type": "string",
+                    "default": "Patito"
+                }
+            }
+        }
+    }
+}

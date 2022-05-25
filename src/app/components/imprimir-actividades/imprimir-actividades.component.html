@@ -1,0 +1,154 @@
+<div class="contenedor-principal">
+    <table class="row">
+        <caption>
+            <h5>Actividades</h5>
+        </caption>
+        <tr>
+            <h6>Inicio</h6>
+            <td>
+                <input type="date" value="{{ini}}" (change)="CambioFecha()" id="fechaIni">
+            </td>
+            <h6>Fin</h6>
+            <td>
+                <input type="date" value="{{fin}}" (change)="CambioFecha()" id="fechaFin">
+            </td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col s12">
+            <label>Institutos</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="numCarByInst != 0">
+        <div class="col s12">
+            <label>Profesores</label>
+            <select (change)="cambioProfesor($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of profesores">
+                    <option [value]="item.idProfesor">{{item.apellidoP}} {{item.apellidoM}} {{item.nombresP}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table *ngIf="profesorActual !== -1 || institutoActual !== -1" class="table1">
+        <caption>
+            <h5>
+                {{institutosAux[institutoActual].nombreInstituto}}
+            </h5>
+        </caption>
+        <table *ngFor="let profesor of profesores2; let i = index" class="table1">
+            <caption *ngIf="profesor.idProfesor != -1">
+                <h5>
+                    {{profesor.apellidoP}} {{profesor.apellidoM}} {{profesor.nombresP}}
+                </h5>
+            </caption>
+            <tr *ngIf="profesor.idProfesor != -1">
+                <td>
+                    Actividad
+                </td>
+                <td>
+                    Descripcion
+                </td>
+                <td>
+                    Inicio
+                </td>
+                <td>
+                    Fin
+                </td>
+                <td>
+                    Validado
+                </td>
+                <td>
+                    Comprobante
+                </td>
+            </tr>
+            <tr *ngFor="let actividad of actividades[i]; let i=index">
+                <td>
+                    {{actividad.actividad}}
+                </td>
+                <td>
+                    {{actividad.descripcion}}
+                </td>
+                <td>
+                    {{actividad.inicio}}
+                </td>
+                <td>
+                    {{actividad.fin}}
+                </td>
+                <td>
+                    {{actividad.validado}}
+                </td>
+                <td>
+                    {{actividad.comprobante}}
+                </td>
+            </tr>
+        </table>
+    </table>
+    <div *ngIf="profesorActual === -1 && institutoActual === -1">
+        <div *ngFor="let profesores of profesoresAux; let i = index">
+            <table *ngIf="profesores != undefined || profesores != null" class="table1">
+                <caption>
+                    <h5>
+                        {{institutosAux[i].nombreInstituto}}
+                    </h5>
+                </caption>
+                <tr *ngFor="let profesor of profesores; let j= index">
+                    <div *ngIf="profesor != null">
+                        <table>
+                            <caption>
+                                <h5>
+                                    {{profesor.apellidoP}} {{profesor.apellidoM}} {{profesor.nombresP}}
+                                </h5>
+                            </caption>
+                            <tr>
+                                <td>
+                                    Actividad
+                                </td>
+                                <td>
+                                    Descripcion
+                                </td>
+                                <td>
+                                    Inicio
+                                </td>
+                                <td>
+                                    Fin
+                                </td>
+                                <td>
+                                    Validado
+                                </td>
+                                <td>
+                                    Comprobante
+                                </td>
+                            </tr>
+                            <tr *ngFor="let actividad of actividadesAux[profesor.idProfesor]">
+                                <td>
+                                    {{actividad.actividad}}
+                                </td>
+                                <td>
+                                    {{actividad.descripcion}}
+                                </td>
+                                <td>
+                                    {{actividad.inicio}}
+                                </td>
+                                <td>
+                                    {{actividad.fin}}
+                                </td>
+                                <td>
+                                    {{actividad.validado}}
+                                </td>
+                                <td>
+                                    {{actividad.comprobante}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

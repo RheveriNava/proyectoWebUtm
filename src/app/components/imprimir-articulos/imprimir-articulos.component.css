@@ -1,0 +1,31 @@
+@media print {
+    .row {
+        display: none !important;
+    }
+    table {
+        page-break-after: auto;
+        outline-style: solid;
+    }
+    span {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    li {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    ol {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    caption {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        outline-style: solid;
+    }
+    /* @page {
+        margin: 150px 0px 150px 0px !important;
+        padding: 0px !important;
+        size: A4 portrait;
+    } */
+}

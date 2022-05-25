@@ -1,0 +1,28 @@
+<div class="contenedor-principal">
+    <div class="row">
+        <div class="col s12">
+            <label>Instituto del Profesor</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table>
+        <tr *ngFor="let articulo of articulos | paginate: {itemsPerPage: pageSize, currentPage: p} ; let i=index">
+            <td>
+                {{articulo.fechaEdicion}}
+            </td>
+            <td>
+                <b>{{articulo.titulo}}</b>
+            </td>
+            <td *ngFor=" let autor of autores[i]">
+                {{autor.nombresP}}
+                <sup>{{autor.pos}}</sup>
+            </td>
+        </tr>
+    </table>
+</div>
+<pagination-controls class="page-number" (pageChange)="p=($event)" previousLabel="Previous" nextLabel="Next" class="center">
+</pagination-controls>

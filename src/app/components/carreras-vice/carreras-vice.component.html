@@ -1,0 +1,79 @@
+<div class="contenedor-principal">
+    <div class="row">
+        <div class="col s12">
+            <label>Instituto del Profesor</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table>
+        <tr *ngFor="let carrera of carreras; let i = index">
+            <td>
+                {{carrera.nombreCarrera}}
+            </td>
+            <td>
+                <a class="right blue-text" (click)="modificarCarrera(i)">
+                    <i class="material-icons vertical-align-middle">
+                        assignment
+                    </i>Editar
+                </a>
+                <a class="right blue-text" (click)="eliminarCarrera(i)">
+                    <i class="material-icons vertical-align-middle">
+                        delete
+                    </i>Eliminar
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="modificarCarrera" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Editar Carrera</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.nombreCarrera" required type="text" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Codigo de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.codigoCarrera" required type="text" placeholder="Codigo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Instituto del Profesor</label>
+                    <select (change)="cambioInstituto2($event.target)" class="browser-default" [(ngModel)]="carreraActual.idInstituto">
+                        <ng-container *ngFor="let item of institutos">
+                            <option  *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Codigo de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.siglas" required type="email" placeholder="Codigo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="actualizarCarrera()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

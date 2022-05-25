@@ -1,0 +1,17 @@
+@media print {
+    .row {
+        display: none !important;
+    }
+    .table1 {
+        page-break-after: auto;
+        outline-style: solid;
+    }
+    caption {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}

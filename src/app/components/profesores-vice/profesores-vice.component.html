@@ -1,0 +1,131 @@
+<div class="contenedor-principal">
+    <div class="row">
+        <div class="col s12">
+            <label>Instituto del Profesor</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="numCarByInst != 0">
+        <div class="col s12">
+            <label>Carrera del Profesor</label>
+            <select (change)="cambioCarrera($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of carreras">
+                    <option [value]="item.idCarrera">{{item.nombreCarrera}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table>
+        <tr *ngFor="let profesor of profesores; let i = index">
+            <!-- el * es para un for-->
+            <td>
+                <img src="http://localhost:3000/{{profesor.idProfesor}}.jpg" width="64" alt="" class="circle responsive-img">
+            </td>
+            <td>
+                {{profesor.nombresP}} {{profesor.apellidoP}} {{profesor.apellidoM}}
+            </td>
+            <td>
+                <a class="right blue-text" (click)="modificarProfesor(i)">
+                    <i class="material-icons vertical-align-middle">
+                        assignment
+                    </i>Editar
+                </a>
+                <a class="right blue-text" (click)="eliminarProfesor(i)">
+                    <i class="material-icons vertical-align-middle">
+                        delete
+                    </i>Eliminar
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="modificarProfesor" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Ingresar Profesor</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre del Profesor</label>
+                    <input [(ngModel)]="profesor.nombresP" required type="text" placeholder="Nombre" value="profesor.nombresP">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Paterno</label>
+                    <input [(ngModel)]="profesor.apellidoP" required type="text" placeholder="Apellido Paterno" value="profesor.apellidoP">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Materno</label>
+                    <input [(ngModel)]="profesor.apellidoM" required type="text" placeholder="Apellido Materno" value="profesor.apellidoM">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Correo del Profesor</label>
+                    <input [(ngModel)]="profesor.correoProfesor" required type="email" placeholder="Correo del Profesor" value="profesor.correoProfesor">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo del Profesor</label>
+                    <select (change)="cambioTipoProfesor($event.target)" class="browser-default" [(ngModel)]="profesor.idTipoProfesor">
+                        <ng-container *ngFor="let item of tipoP">
+                            <option  [value]="item.idTipoProfesor">{{item.nombreTipo}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Instituto del Profesor</label>
+                    <select (change)="cambioInstituto($event.target)" class="browser-default" [(ngModel)]="profesor.idInstituto">
+                        <ng-container *ngFor="let item of institutos">
+                            <option  *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row" *ngIf="numCarByInst != 0">
+                <div class="col s12">
+                    <label>Carrera del Profesor</label>
+                    <select (change)="cambioCarrera($event.target)" class="browser-default" [(ngModel)]="profesor.idCarrera">
+                        <ng-container *ngFor="let item of carreras">
+                            <option [value]="item.idCarrera" >{{item.nombreCarrera}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Grado del Profesor</label>
+                    <input [(ngModel)]="profesor.grado" required type="text" placeholder="Grado del Profesor" value="profesor.gradoP">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre Apa del Profesor</label>
+                    <input [(ngModel)]="profesor.nombreApa" required type="text" placeholder="Nombre Apa del Profesor" value="profesor.nombreApa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="actualizarProfesor()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

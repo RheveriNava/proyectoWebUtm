@@ -1,0 +1,92 @@
+<div class="contenedor-principal">
+    <img src="http://localhost:3000/{{idProfesor}}.jpg" width="100" alt="" class="circle responsive-img">
+    <table class="striped">
+        <caption>
+            <h5>
+                {{"Datos Generales" | translate}}
+            </h5>
+        </caption>
+        <tr>
+            <b>
+                {{"Nombre" | translate}}
+            </b>
+            <td>
+                {{profesor.nombresP}}
+            </td>
+        </tr>
+        <tr>
+            <b>
+                {{"Apellido Paterno" | translate}}
+            </b>
+            <td>
+                {{profesor.apellidoP}}
+            </td>
+        </tr>
+        <tr>
+            <b>
+                {{"Apellido Materno" | translate}}
+            </b>
+            <td>
+                {{profesor.apellidoM}}
+            </td>
+        </tr>
+        <tr>
+            <b>
+                Nombre APA
+            </b>
+            <td class="col s12">
+                <input [(ngModel)]="profesor.nombreApa" required type="string" placeholder="Nombre Apa del Profesor">
+            </td>
+        </tr>
+        <tr>
+            <b>
+                Correo
+            </b>
+            <td>
+                <input [(ngModel)]="profesor.correoProfesor" required type="string" placeholder="Correo del Profesor">
+            </td>
+        </tr>
+        <tr>
+            <b>
+                Instituto
+            </b>
+            <td>
+                {{instituto.nombreInstituto}}
+            </td>
+        </tr>
+        <tr *ngIf="numCarByInst != 0">
+            <b>
+                Carrera
+            </b>
+            <td>
+                {{carrera.nombreCarrera}}
+            </td>
+        </tr>
+        <tr>
+            <b>
+                Grado
+            </b>
+            <td>
+                <input [(ngModel)]="profesor.grado" required type="string" placeholder="Grado del Profesor">
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    <table>
+        <caption class="col s6 center">
+            <a (click)="guardarCambios()" class="waves-effect waves-light btn" href="/home/generales/{{idProfesor}}"><i class="material-icons left">save</i>Guardar Cambios</a>
+        </caption>
+    </table>
+</div>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating black"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating black"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>

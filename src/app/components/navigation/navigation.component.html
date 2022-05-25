@@ -1,0 +1,673 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="/home/generales/{{idProfesor}}" class="brand-logo">Logo<!-- <img src="assets/img/utm_ova.gif" class="responsive-img" alt=""> --></a>
+        <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down" id="sidenav">
+            <li>
+                <a class="dropdown-trigger" data-target="menu_ver" href="mobile.html">
+                    Ver<i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
+            <li>
+                <div class="dropdown-trigger" data-target="menu_agregarVice">
+                    <a *ngIf="nivelProfesor == 1 && nivelProfesor != undefined">
+                        Agregar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+                <div class="dropdown-trigger" data-target="menu_agregarJefe">
+                    <a *ngIf="nivelProfesor == 3 && nivelProfesor != undefined">
+                        Agregar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown-trigger" data-target="menu_listarVice">
+                    <a *ngIf="nivelProfesor == 1 && nivelProfesor != undefined">
+                        Listar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+                <div class="dropdown-trigger" data-target="menu_listarDirector">
+                    <a *ngIf="nivelProfesor == 2 && nivelProfesor != undefined">
+                        Listar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+                <div class="dropdown-trigger" data-target="menu_listarJefe">
+                    <a *ngIf="nivelProfesor == 3 && nivelProfesor != undefined">
+                        Listar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown-trigger" data-target="menu-importarVice">
+                    <a *ngIf="nivelProfesor == 1 && nivelProfesor != undefined">
+                        Importar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+                <div class="dropdown-trigger" data-target="menu-importarDirector">
+                    <a *ngIf="nivelProfesor == 2 && nivelProfesor != undefined">
+                        Importar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+                <div class="dropdown-trigger" data-target="menu-importarJefe">
+                    <a *ngIf="nivelProfesor == 3 && nivelProfesor != undefined">
+                        Importar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown-trigger" data-target="menu-imprimir">
+                    <a>
+                        Imprimir
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown-trigger" data-target="dropdown-menu-exportar">
+                    <a *ngIf="nivelProfesor==1">
+                        Exportar
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a class="right
+                black-text" (click)="logout()"><i class="material-icons
+                vertical-align-middle">exit_to_app</i></a>
+            </li>
+        </ul>
+        <ul id="menu_listarVice" class="dropdown-content">
+            <li><a href="/home/profesoresVice/{{idProfesor}}">Profesores</a></li>
+            <li><a href="/home/institutosVice/{{idProfesor}}">Institutos</a></li>
+            <li><a href="/home/carrerasVice/{{idProfesor}}">Carreras</a></li>
+            <li><a href="/home/articulosVice/{{idProfesor}}">Articulos</a></li>
+            <li><a href="/home/eventosVice/{{idProfesor}}">Eventos</a></li>
+            <li><a href="/home/actividadesVice/{{idProfesor}}">Actividades</a></li>
+        </ul>
+        <ul id="menu_listarJefe" class="dropdown-content">
+            <li><a href="/home/profesoresJefe/{{idProfesor}}">Profesores</a></li>
+        </ul>
+        <ul id="menu_listarDirector" class="dropdown-content">
+            <li><a href="/home/articulosDirector/{{idProfesor}}">Articulos</a></li>
+            <li><a href="/home/eventosDirector/{{idProfesor}}">Eventos</a></li>
+            <li><a href="/home/actividadesDirector/{{idProfesor}}">Actividades</a></li>
+        </ul>
+        <ul id="menu_ver" class="dropdown-content">
+            <li><a href="/home/generales/{{idProfesor}}">Datos Generales</a></li>
+            <li><a href="/home/materias">Materias</a></li>
+            <li><a href="/home/articulos/{{idProfesor}}">Articulos</a></li>
+            <li><a href="/home/eventos/{{idProfesor}}">Eventos</a></li>
+            <li><a href="/home/actividades/{{idProfesor}}">Actividades</a></li>
+        </ul>
+        <ul id="menu_agregarVice" class="dropdown-content">
+            <li><a (click)="agregarProfesor()">Profesores</a></li>
+            <li><a (click)="agregarInstituto()">Institutos</a></li>
+            <li><a (click)="agregarCarrera()">Carreras</a></li>
+        </ul>
+        <ul id="menu_agregarJefe" class="dropdown-content">
+            <li><a (click)="agregarProfesorJefe()">Profesores</a></li>
+        </ul>
+        <ul id="menu-importarVice" class="dropdown-content">
+            <li><a (click)="importarProfesor()">Profesores</a></li>
+            <li><a (click)="importarInstitutos()">Institutos</a></li>
+            <li><a (click)="importarCarreras()">Carreras</a></li>
+        </ul>
+        <ul id="menu-importarDirector" class="dropdown-content">
+            <li><a (click)="importarArticulos()">Artículos</a></li>
+            <li><a (click)="importarEventos()">Eventos</a></li>
+            <li><a (click)="importarActividades()">Actividades</a></li>
+        </ul>
+        <ul id="menu-importarJefe" class="dropdown-content">
+            <li><a (click)="importarProfesor()">Profesores</a></li>
+        </ul>
+        <ul id="menu-imprimir" class="dropdown-content">
+            <li><a href="/home/imprimirArticulos/{{idProfesor}}">Artículos</a></li>
+            <li><a href="/home/imprimirActividades/{{idProfesor}}">Actividades</a></li>
+            <li><a href="/home/imprimirEventos/{{idProfesor}}">Eventos</a></li>
+        </ul>
+        <ul id="dropdown-menu-exportar" class="dropdown-content">
+            <li><a (click)="exportarArticulos()">Articulos<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a (click)="exportarActividades()">Actividades<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a (click)="exportarEventos()">Eventos<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+</nav>
+<!-- <ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass1</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+</ul> -->
+<div id="agregarProfesor" class="modal">
+
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Registro de Profesor</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre(s)</label>
+                    <input [(ngModel)]="profesorNuevo.nombresP" required type="text" placeholder="Nombre(s)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Paterno</label>
+                    <input [(ngModel)]="profesorNuevo.apellidoP" required type="text" placeholder="Apellido Paterno">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Materno</label>
+                    <input [(ngModel)]="profesorNuevo.apellidoM" required type="text" placeholder="Apellido Materno">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Correo</label>
+                    <input [(ngModel)]="profesorNuevo.correoProfesor" required type="email" placeholder="Correo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Password</label>
+                    <input [(ngModel)]="profesorNuevo.password" required type="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo</label>
+                    <select (change)="cambioTipoProfesor($event.target)" class="browser-default">
+                        <ng-container *ngFor="let item of tipoP">
+                            <option [value]="item.idTipoProfesor">{{item.nombreTipo}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Instituto</label>
+                    <select (change)="cambioInstituto($event.target)" class="browser-default">
+                        <ng-container *ngFor="let item of institutos">
+                            <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}
+                            </option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row" *ngIf="numCarByInst != 0">
+                <div class="col s12">
+                    <label>Carrera</label>
+                    <select (change)="cambioCarrera($event.target)" class="browser-default">
+                        <ng-container *ngFor="let item of carreras">
+                            <option [value]="item.idCarrera">{{item.nombreCarrera}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Grado</label>
+                    <input [(ngModel)]="profesorNuevo.grado" required type="text" placeholder="Grado">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre Apa</label>
+                    <input [(ngModel)]="profesorNuevo.nombreApa" required type="text" placeholder="Nombre Apa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="darAltaProfesor()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="agregarProfesorJefe" class="modal">
+
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Registro de Profesor</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre(s)</label>
+                    <input [(ngModel)]="profesorNuevo.nombresP" required type="text" placeholder="Nombre(s)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Paterno</label>
+                    <input [(ngModel)]="profesorNuevo.apellidoP" required type="text" placeholder="Apellido Paterno">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Apellido Materno</label>
+                    <input [(ngModel)]="profesorNuevo.apellidoM" required type="text" placeholder="Apellido Materno">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Correo</label>
+                    <input [(ngModel)]="profesorNuevo.correoProfesor" required type="email" placeholder="Correo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Password</label>
+                    <input [(ngModel)]="profesorNuevo.password" required type="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo</label>
+                    <select (change)="cambioTipoProfesor($event.target)" class="browser-default">
+                        <ng-container *ngFor="let item of tipoP">
+                            <option [value]="item.idTipoProfesor">{{item.nombreTipo}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Grado</label>
+                    <input [(ngModel)]="profesorNuevo.grado" required type="text" placeholder="Grado">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre Apa</label>
+                    <input [(ngModel)]="profesorNuevo.nombreApa" required type="text" placeholder="Nombre Apa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="darAltaProfesorJefe()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="agregarInstituto" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Registro de Instituto</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre del Instituto</label>
+                    <input [(ngModel)]="institutoNuevo.nombreInstituto" required type="text" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Codigo del Instituto</label>
+                    <input [(ngModel)]="institutoNuevo.codigoInstituto" required type="text" placeholder="Codigo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="darAltaInstituto()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="agregarCarrera" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Registro de Carrera</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.nombreCarrera" required type="text" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Codigo de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.codigoCarrera" required type="text" placeholder="Codigo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Instituto</label>
+                    <select (change)="cambioInstituto2($event.target)" class="browser-default">
+                        <ng-container *ngFor="let item of institutos">
+                            <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}
+                            </option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Siglas de la Carrera</label>
+                    <input [(ngModel)]="carreraActual.siglas" required type="email" placeholder="Siglas">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="darAltaCarrera()" class=" modal-action modal-close waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarProfesor">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Profesores</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(1)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarInstitutos">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Institutos</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(2)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarCarreras">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Carreras</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(3)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarEventos">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Eventos</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(4)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarActividades">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Actividades</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(5)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="importarArticulos">
+    <div style="border: .5px solid #78909c; padding: 10px;">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Importar Articulos</h5>
+            </div>
+        </div>
+        <div class="row file">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input (change)="cargarExcel($event)" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="importar2DB(5)" class="modal-action modal-close waves-effect waves-green btn-flat">importar</a>
+            </div>
+            <div class="col s6 center">
+                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="exportarArticulos" class="modal">
+    <div class="modal-content row">
+        <div class="row">
+            <h4 class="center-align">Exportar Artículos</h4>
+        </div>
+        <div class="row">
+            <div class="row col s12">
+                <label>Instituto</label>
+                <select [(ngModel)]="indexInstitutoArticulosExportar" class="browser-default">
+
+                    <option *ngFor="let instituto of institutos;let i=index" [value]="i">
+
+                        {{instituto.nombreInstituto}}
+                    </option>
+                </select>
+            </div>
+            <div class="row col s6">
+
+                <a (click)="exportarArticulosWord(0)" class="waves-effect waves-
+    blue btn blue darken-3">Exportar WORD</a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center">
+                <a class="modal-action modal-close waves-effect waves-red btn
+    
+    red">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="exportarActividades" class="modal">
+    <div class="modal-content row">
+        <div class="row">
+            <h4 class="center-align">Exportar Actividades</h4>
+        </div>
+        <div class="row">
+            <div class="row col s12">
+                <label>Instituto</label>
+                <select [(ngModel)]="indexInstitutoArticulosExportar" class="browser-default">
+
+                    <option *ngFor="let instituto of institutos;let i=index" [value]="i">
+
+                        {{instituto.nombreInstituto}}
+                    </option>
+                </select>
+            </div>
+            <div class="row col s6">
+
+                <a (click)="exportarArticulosWord(1)" class="waves-effect waves-
+    blue btn blue darken-3">Exportar WORD</a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center">
+                <a class="modal-action modal-close waves-effect waves-red btn
+    
+    red">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="exportarEventos" class="modal">
+    <div class="modal-content row">
+        <div class="row">
+            <h4 class="center-align">Exportar Eventos</h4>
+        </div>
+        <div class="row">
+            <div class="row col s12">
+                <label>Instituto</label>
+                <select [(ngModel)]="indexInstitutoArticulosExportar" class="browser-default">
+
+                    <option *ngFor="let instituto of institutos;let i=index" [value]="i">
+
+                        {{instituto.nombreInstituto}}
+                    </option>
+                </select>
+            </div>
+            <div class="row col s6">
+
+                <a (click)="exportarArticulosWord(2)" class="waves-effect waves-
+    blue btn blue darken-3">Exportar WORD</a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center">
+                <a class="modal-action modal-close waves-effect waves-red btn
+    
+    red">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

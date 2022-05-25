@@ -1,0 +1,15 @@
+<div class="contenedor-principal" id="print-section">
+    <div class="row" id="select-institutos">
+    </div>
+    <table>
+        <tr *ngFor="let profesor of profesores | paginate: {itemsPerPage: pageSize,
+        currentPage: p} ; let i=index">
+            <!-- el * es para un for-->
+            <td>
+                {{profesor.nombresP}} {{profesor.apellidoP}} {{profesor.apellidoM}}
+            </td>
+        </tr>
+    </table>
+</div>
+<pagination-controls class="page-number" (pageChange)="p=($event)" previousLabel="Previous" nextLabel="Next" class="center">
+</pagination-controls>

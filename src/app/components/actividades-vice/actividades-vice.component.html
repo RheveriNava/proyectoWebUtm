@@ -1,0 +1,77 @@
+<div class="contenedor-principal">
+    <table>
+        <caption>
+            <h5>Actividades</h5>
+        </caption>
+        <tr>
+            <h6>Inicio</h6>
+            <td>
+                <input type="date" value="{{ini}}" (change)="CambioFecha()" id="fechaIni">
+            </td>
+            <h6>Fin</h6>
+            <td>
+                <input type="date" value="{{fin}}" (change)="CambioFecha()" id="fechaFin">
+            </td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col s12">
+            <label>Institutos</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="numCarByInst != 0">
+        <div class="col s12">
+            <label>Carreras</label>
+            <select (change)="cambioCarrera($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of carreras">
+                    <option [value]="item.idCarrera">{{item.nombreCarrera}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="numCarByInst != 0">
+        <div class="col s12">
+            <label>Profesores</label>
+            <select (change)="cambioProfesor($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of profesores">
+                    <option [value]="item.idProfesor">{{item.apellidoP}} {{item.apellidoM}} {{item.nombresP}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table>
+        <tr *ngFor="let profesor of profesores; let i = index">
+            <td *ngIf="profesor.idProfesor != -1">
+                {{profesor.apellidoP}} {{profesor.apellidoM}} {{profesor.nombresP}}
+            </td>
+            <table *ngIf="profesor.idProfesor != -1">
+                <tr *ngFor="let actividad of actividades[i]; let i=index">
+
+                    <td>
+                        {{actividad.actividad}}
+                    </td>
+                    <td>
+                        {{actividad.descripcion}}
+                    </td>
+                    <td>
+                        {{actividad.inicio}}
+                    </td>
+                    <td>
+                        {{actividad.fin}}
+                    </td>
+                    <td>
+                        {{actividad.validado}}
+                    </td>
+                    <td>
+                        {{actividad.comprobante}}
+                    </td>
+                </tr>
+            </table>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+<div class="contenedor-principal">
+    <table>
+        <caption>
+            <h5>Eventos</h5>
+        </caption>
+        <tr>
+            <h6>Inicio</h6>
+            <td>
+                <input type="date" value="{{ini}}" (change)="CambioFecha()" id="fechaIni">
+            </td>
+            <h6>Fin</h6>
+            <td>
+                <input type="date" value="{{fin}}" (change)="CambioFecha()" id="fechaFin">
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr *ngFor="let evento of eventos; let i=index">
+            <td>
+                {{evento.titulo}}
+            </td>
+            <td>
+                {{evento.nombreEvento}}
+            </td>
+            <td>
+                {{evento.tipoEvento}}
+            </td>
+            <td>
+                {{evento.participacion}}
+            </td>
+            <td>
+                {{evento.afectaLinea}}
+            </td>
+            <td>
+                {{evento.tipoParticipacion}}
+            </td>
+            <td>
+                {{evento.inicio}}
+            </td>
+            <td>
+                {{evento.fin}}
+            </td>
+            <td>
+                {{evento.comprobante}}
+            </td>
+        </tr>
+    </table>
+</div>

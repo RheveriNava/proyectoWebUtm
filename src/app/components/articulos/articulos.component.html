@@ -1,0 +1,276 @@
+<div class="contenedor-principal">
+    <table>
+        <caption>
+            <h5>Articulos</h5>
+        </caption>
+        <tr>
+            <h6>Inicio</h6>
+            <td>
+                <input type="date" value="{{ini}}" (change)="CambioFecha()" id="fechaIni">
+            </td>
+            <h6>Fin</h6>
+            <td>
+                <input type="date" value="{{fin}}" (change)="CambioFecha()" id="fechaFin">
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr *ngFor="let articulo of articulos; let i=index">
+            <!-- el * es para un for-->
+            <td>
+                {{articulo.fechaEdicion}}
+            </td>
+            <td>
+                <b>{{articulo.titulo}}</b>
+                <!-- {{ es para imprimir en pantalla-->
+                <p *ngFor=" let autor of autores[i]">
+                    {{autor.nombresP}} {{autor.apellidoP}} {{autor.apellidoM}}
+                    <sup>{{autor.pos}}</sup>
+                    <a class="blue-text col l1" (click)="eliminarAutor(autor.idProfesor,articulo.idArticulo)">
+                        <i class="material-icons vertical-align-middle">
+                            delete
+                        </i>
+                    </a>
+                </p>
+            </td>
+            <td>
+                <input class="right" multiple="true" type="file" accept="image/*,.pdf" (change)="cargarArchivo($event.target,articulo.idArticulo)">
+                <a class="right blue-text" (click)="agregarProfesoresArticulo(i)">
+                    <i class="material-icons vertical-align-middle">
+                        add
+                    </i> UTM
+                </a>
+                <a class="right blue-text" (click)="modificarArticulo(i)">
+                    <i class="material-icons vertical-align-middle">
+                        edit
+                    </i> Editar
+                </a>
+                <a class="right blue-text" (click)="modificarPrioridad(i)">
+                    <i class="material-icons vertical-align-middle">
+                        edit
+                    </i> Prioridad
+                </a>
+            </td>
+            <td>
+                <p *ngFor=" let archivo of articulosArchivos[i]">
+                    <a class="right blue-text" (click)="openPDF(archivo)">
+                        <i class="material-icons vertical-align-middle">
+                            add
+                        </i> UTM
+                    </a>
+
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="modificarArticulo" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Editar Articulo</h5>
+            </div>
+        </div>
+
+        <div style="border: .5px solid #78909c; padding: 10px;">
+            <div class="row">
+                <div class="col s12">
+                    <label>Titulo del Articulo</label>
+                    <input [(ngModel)]="articulo.titulo" required type="text" placeholder="Titulo del Articulo" value="articulo.titulo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo CLR</label>
+                    <input [(ngModel)]="articulo.tipCLR" required type="text" placeholder="Tipo CLR" value="articulo.tipCLR">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Nombre CLR</label>
+                    <input [(ngModel)]="articulo.nombreCLR" required type="text" placeholder="Nombre CLR" value="articulo.nombreCLR">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Estado</label>
+                    <input [(ngModel)]="articulo.estado" required type="text" placeholder="Estado" value="articulo.estado">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Fecha de Edicion</label>
+                    <input [(ngModel)]="articulo.fechaEdicion" required type="text" placeholder="Fecha de Edicion" value="articulo.fechaEdicion">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Tipo NI</label>
+                    <input [(ngModel)]="articulo.tipoNI" required type="text" placeholder="Tipo NI" value="articulo.tipoNI">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>ISBN,ISSN del Articulo</label>
+                    <input [(ngModel)]="articulo.issnisbn" required type="text" placeholder="ISBN,ISSN del Articulo" value="articulo.issnisbn">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Volumen</label>
+                    <input [(ngModel)]="articulo.volumen" required type="text" placeholder="Volumen" value="articulo.volumen">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Número de Páginas</label>
+                    <input [(ngModel)]="articulo.paginas" required type="text" placeholder="Número de páginas" value="articulo.paginas">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Año de publicación</label>
+                    <input [(ngModel)]="articulo.anyo" required type="text" placeholder="Año de publicación" value="articulo.anyo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>DOI del Articulo</label>
+                    <input [(ngModel)]="articulo.doi" required type="text" placeholder="DOI del Articulo" value="articulo.doi">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Comprobante del Articulo</label>
+                    <input [(ngModel)]="articulo.comprobante" required type="text" placeholder="Comprobante del Articulo" value="articulo.comprobante">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Indexa del Articulo</label>
+                    <input [(ngModel)]="articulo.indexa" required type="text" placeholder="Indexa del Articulo" value="articulo.indexa">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Issue del Articulo</label>
+                    <input [(ngModel)]="articulo.issue" required type="text" placeholder="Issue del Articulo" value="articulo.issue">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Editores del Articulo</label>
+                    <input [(ngModel)]="articulo.editores" required type="text" placeholder="Editores del Articulo" value="articulo.editores">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Cuidad Donde se Publicó</label>
+                    <input [(ngModel)]="articulo.cuidad" required type="text" placeholder="Ciudad Donde se Publicó" value="articulo.ciudad">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>País Donde se Publicó</label>
+                    <input [(ngModel)]="articulo.pais" required type="text" placeholder="País Donde se Publicó" value="articulo.pais">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <label>Editorial</label>
+                    <input [(ngModel)]="articulo.editorial" required type="text" placeholder="Editorial" value="articulo.editorial">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 center">
+                    <a (click)="actualizarArticulo()" class=" modal-action waves-effect waves-green btn-flat">Enviar</a>
+                </div>
+                <div class="col s6 center">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modificarPrioridad" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Editar Prioridad</h5>
+            </div>
+        </div>
+        <p *ngFor=" let autor of autores[posArticulo]; let i=index">
+            {{autor.nombresP}}
+            <input [(ngModel)]="autor.pos" required type="string" placeholder="Prioridad" value="autor.pos">
+        </p>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="actualizarPrioridad()" class=" modal-action waves-effect waves-green btn-flat">Enviar</a>
+            </div>
+            <div class="col s6 center">
+                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="agregarProfesoresArticulo" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom: 0px !important;">
+            <div class="col s12">
+                <h5 class="center">Ingresar Profesor</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <label>Instituto</label>
+                <select (change)="cambioInstituto($event.target)" class="browser-default">
+                    <ng-container *ngFor="let item of institutos">
+                        <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}
+                        </option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+        <div class="row" *ngIf="numCarByInst != 0">
+            <div class="col s12">
+                <label>Carrera</label>
+                <select (change)="cambioCarrera($event.target)" class="browser-default">
+                    <ng-container *ngFor="let item of carreras">
+                        <option [value]="item.idCarrera">{{item.nombreCarrera}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+        <table>
+            <tr *ngFor="let profesor of profesores; let i = index">
+                <td *ngIf="profesor.valido == 'si'">
+                    {{profesor.nombresP}} {{profesor.apellidoP}} {{profesor.apellidoM}}
+                </td>
+                <td *ngIf="profesor.valido == 'si'">
+                    <select (change)="cambioPrioridad($event.target,profesor.idProfesor)" class="right browser-default">
+                            <ng-container *ngFor="let item of prioridades">
+                                <option >{{item}}</option>
+                            </ng-container>
+                        </select>
+                </td>
+                <td *ngIf="profesor.valido == 'si'">
+                    <p>
+                        <label>
+                                <input class="right" type="checkbox" [checked]='autorChecked[profesor.idProfesor]' (change)="agregarAutor(profesor.idProfesor)" />
+                                <span ></span>
+                            </label>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div class="row">
+            <div class="col s6 center">
+                <a (click)="altaProfesoresArticulo()" class=" modal-action waves-effect waves-green btn-flat">Enviar</a>
+            </div>
+            <div class="col s6 center">
+                <a (click)="limpiarProfesoresArticulo()" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>

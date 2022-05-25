@@ -1,0 +1,62 @@
+<div class="contenedor-principal">
+    <table class="row">
+        <caption>
+            <h5>Articlos</h5>
+        </caption>
+        <tr>
+            <h6>Inicio</h6>
+            <td>
+                <input type="date" value="{{ini}}" (change)="CambioFecha()" id="fechaIni">
+            </td>
+            <h6>Fin</h6>
+            <td>
+                <input type="date" value="{{fin}}" (change)="CambioFecha()" id="fechaFin">
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+        <div class="col s12">
+            <label>Instituto</label>
+            <select (change)="cambioInstituto($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of institutos">
+                    <option *ngIf="item.idInstituto != 0" [value]="item.idInstituto">{{item.nombreInstituto}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <label>Profesores</label>
+            <select (change)="cambioProfesor($event.target)" class="browser-default">
+                <ng-container *ngFor="let item of profesores">
+                    <option [value]="item.idProfesor">{{item.apellidoP}} {{item.apellidoM}} {{item.nombresP}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </div>
+    <table *ngIf="idInstituto != -1 || profesor.idProfesor != -1">
+        <caption>
+            <h5 *ngIf="idInstituto != -1">{{institutoAux.nombreInstituto}}</h5>
+            <h5 *ngIf="profesor.idProfesor != -1">{{profesor.apellidoP}} {{profesor.apellidoM}} {{profesor.nombresP}}</h5>
+        </caption>
+        <ol>
+            <li *ngFor="let articulo of articulos; let i=index">
+                <span *ngFor=" let autor of autores[i]">{{autor.nombreApa}}<sup>{{autor.pos}}</sup></span> {{articulo.fechaEdicion}} {{articulo.titulo}}
+            </li>
+        </ol>
+    </table>
+    <div *ngIf="idInstituto == -1 && profesor.idProfesor == -1">
+        <div *ngFor="let articulos1 of articulos2; let i=index">
+            <table *ngIf="articulos1 != null">
+                <caption>
+                    <h5>{{institutos2[i].nombreInstituto}}</h5>
+                </caption>
+                <ol>
+                    <li *ngFor="let articulo of articulos1; let j=index">
+                        <span *ngFor=" let autor of autores2[i][j]">{{autor.nombreApa}}<sup>{{autor.pos}}</sup></span> {{articulo.fechaEdicion}} {{articulo.titulo}}
+                    </li>
+                </ol>
+            </table>
+        </div>
+    </div>
+</div>

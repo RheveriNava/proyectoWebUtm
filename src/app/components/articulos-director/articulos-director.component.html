@@ -1,0 +1,21 @@
+<div class="contenedor-principal" id="print-section">
+    <table>
+        <tr *ngFor="let articulo of articulos | paginate: {itemsPerPage: pageSize,
+        currentPage: p} ; let i=index">
+            <!-- el * es para un for-->
+            <td>
+                {{articulo.fechaEdicion}}
+            </td>
+            <td>
+                <b>{{articulo.titulo}}</b>
+                <!-- {{ es para imprimir en pantalla-->
+            </td>
+            <td *ngFor=" let autor of autores[i]">
+                {{autor.nombresP}}
+                <sup>{{autor.pos}}</sup>
+            </td>
+        </tr>
+    </table>
+</div>
+<pagination-controls class="page-number" (pageChange)="p=($event)" previousLabel="Previous" nextLabel="Next" class="center">
+</pagination-controls>

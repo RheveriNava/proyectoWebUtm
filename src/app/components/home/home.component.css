@@ -1,0 +1,13 @@
+@media print {
+    @page {
+        size: auto;
+        margin: 0;
+    }
+    .fixed-action-btn {
+        display: none!important;
+        color: white;
+    }
+     :host app-navigation {
+        display: none;
+    }
+}
